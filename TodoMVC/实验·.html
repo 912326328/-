@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cn.vuejs.org/js/vue.js"></script> 
+</head>
+<style>
+    body{background-color: #f5f5f5;}
+    #zhu{width:550px;margin: auto;}
+    #zzl{width:550px; height:130px;margin: auto;}
+    h1{font-size: 100px;text-align: center;color:rgba(175, 47, 47, 0.15);font-weight:100;}
+    .wbk{margin: auto;border: 1px solid #000;background-color:rgb(247, 247, 247);padding: 16px;height:40px;border:1px solid rgb(223, 223, 223);}
+    .nr{width: 474px;height:33px;font-size: 24px;float: right;margin-top: 0px;border:0px;outline: 0px;background-color:rgb(247, 247, 247);}
+    .xia{ display: inline;margin: auto;}
+    .img1{margin-top: 8px;}
+    input::placeholder{color:#cecece;}
+    #cctv{border: 2px;background-color:white; width: auto;height:40px;padding: 15px;}
+    .intt{width: 474px;height:33px;font-size: 24px;margin-top: 0px;float:right;}
+    .btnsc{width: 30px;height:30px;margin-top: 4px;border-radius: 50%;border: 1px solid #bdbdbd;background-color: white;outline: 0px;}
+    .img2{float: left;margin-left: -4px;}
+</style>
+<body>
+    <!-- 主体结构 -->
+    <div id = "zhu">
+        <!-- 邹总记事本专门一个div -->
+        <div id="zzl">
+            <h1>邹总代办</h1>
+        </div>
+        <!-- 输入框内容 -->
+        <div class="wbk">
+            <!-- 按钮标签 -->
+            <p class="xia"><img class="img1" src = "下.svg"width="20"></p>
+            <!-- 文本框 -->
+            <input class="nr" type="text" v-mode="v" placeholder="给我来点事情做">
+        </div>
+        <!-- 写入笔记本内容 -->
+        <div id="cctv">
+            <button @click="gou" class="btnsc"><img class="img2" :src="tp" width="23px"></button>
+            <p class="intt" >{{ jilu }}</p>
+        </div>
+    </div>
+</body>
+<script>
+    let vn = new Vue({
+        el:"#zhu",
+        data:{
+            jilu:"这是一条初始值",
+            tp:""
+        },
+        methods: {
+            gou:function(){
+                this.tp="勾 (1).svg",
+                this.img2.splice(tp)
+            },
+        },
+    })
+</script>
+</html>

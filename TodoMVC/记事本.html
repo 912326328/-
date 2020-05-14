@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cn.vuejs.org/js/vue.js"></script>
+
+    <script src="https://unpkg.com/vue"></script>
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/todomvc-app-css@2.2.0/index.css" />
+</head>
+<style>
+    body {
+        background-color: #f5f5f5;
+    }
+
+    * {
+        margin: 0px;
+        padding: 0px;
+        font-size: 12px;
+        color: #000;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    li {
+        list-style: none;
+    }
+
+    img {
+        border: 0px;
+    }
+
+    #zhu {
+        width: 550px;
+        margin: auto;
+    }
+
+    #zzl {
+        width: 550px;
+        height: 80px;
+        margin: auto;
+    }
+
+    h1 {
+        font-size: 100px;
+        text-align: center;
+        color: rgba(175, 47, 47, 0.15);
+        font-weight: 100;
+        margin-top: 50px;
+        font-family: 楷体;
+    }
+
+    .wbk {
+        margin: auto;
+        border: 1px solid #000;
+        background-color: rgb(247, 247, 247);
+        padding: 16px;
+        height: 40px;
+        border: 1px solid rgb(223, 223, 223);
+    }
+
+    .nr {
+        width: 474px;
+        height: 33px;
+        font-size: 24px;
+        float: right;
+        margin-top: 0px;
+        border: 0px;
+        outline: 0px;
+        background-color: rgb(247, 247, 247);
+    }
+
+    .xia {
+        display: inline;
+        margin: auto;
+    }
+
+    .img1 {
+        margin-top: 8px;
+    }
+
+    input::placeholder {
+        color: #cecece;
+    }
+
+    #cctv {
+        border: 2px;
+        background-color: #ffffff;
+        width: auto;
+        height: 40px;
+        padding: 15px;
+        margin: 0px;
+        border-bottom: 1px solid rgb(221, 221, 221);
+    }
+
+    .ppc {
+        width: 474px;
+        height: 33px;
+        font-size: 24px;
+        margin-top: 5px;
+        float: right;
+    }
+
+    .toggle {
+        width: 25px;
+        height: 25px;
+        margin-top: 4px;
+        border-radius: 100%;
+        border: 1px solid #c0c0c0;
+        background-color: white;
+        outline: 0px;
+        position: relative;
+        top: -18px
+    }
+
+    .x {
+        position: relative;
+        left: 500px;
+        top: 10px;
+        font-size: 14px;
+        color: rgb(255, 255, 255);
+        width: 100%;
+        font-weight: bold;
+    }
+
+    .x:hover {
+        color: rgb(233, 142, 126);
+    }
+
+    input[type='checkbox'] {
+        cursor: pointer;
+        position: relative;
+        width: 1rem;
+        height: 1rem;
+        font-size: 0.9rem;
+        visibility: hidden;
+    }
+
+    input[type='checkbox']::after {
+        position: absolute;
+        top: 0;
+        background-color: #ffffff;
+        color: rgb(0, 255, 34);
+        width: 25px;
+        height: 25px;
+        display: inline-block;
+        visibility: visible;
+        padding-left: 0px;
+        text-align: center;
+        content: ' ';
+        border-radius: 50%;
+        border: 1px solid #000;
+    }
+
+    input[type='checkbox']:checked::after {
+        content: '✓';
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .pg1 {
+        display: inline;
+    }
+
+    .qb {
+        float: left;
+        margin-left: 15px;
+    }
+
+    h3 {
+        float: left;
+    }
+
+    .yis {
+        border: 2px;
+        background-color: #ffffff;
+        width: auto;
+        height: 15px;
+        padding: 15px;
+        margin: 0px;
+        border-bottom: 1px solid rgb(221, 221, 221);
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgba(0, 0, 0, 0.2);
+    }
+</style>
+
+<body>
+    <div class="todoapp">
+        <!-- 主体结构 -->
+        <div id="zhu">
+            <!-- 邹总记事本专门一个div -->
+            <h1>邹总代办</h1>
+            <!-- 输入框内容 -->
+            <div class="wbk">
+                <!-- 按钮标签 -->
+                <p @click="gou" class="xia"><img class="img1" src="下.svg" width="20"></p>
+                <!-- 文本框 -->
+                <input class="nr" type="text" v-model="v" placeholder="给我来点事情做" @keyup.enter="cs6()">
+            </div>
+            <!-- 写入笔记本内容 -->
+            <ul>
+                <li v-for="(xh,y) in xswl" id=cctv>
+                    <p class="ppc">{{ xh }}
+                    <p @click="addc(y)" class="x">X</p>
+                    </p>
+                    <input type="checkbox" class="toggle">
+                </li>
+            </ul>
+        </div>
+
+
+
+        <div class="yis">
+            <h3 _msthash="254917" _msttexthash="9078134">剩下<p class="pg1">5</p>项</h3>
+            <p style="margin-left: 160px;" class="qb"><a>All</a></p>
+            <p class="qb"><a>激活</a></p>
+            <p class="qb"><a>完成</a></p>
+            <button class="clear-completed">清除已完成</button>
+        </div>
+    </div>
+
+</body>
+<script>
+    let vn = new Vue({
+        el: "#zhu",
+        data: {
+            xswl: [
+                "初始值",
+            ],
+            v: "",
+            y: ""
+        },
+        methods: {
+            cs6: function () {
+                //unshift() 把一个元素添加到数组的开头，并返回数组的新长度。
+                this.xswl.unshift(this.v);
+            },
+            addc: function (y) {
+                this.xswl.splice(y, 1);
+            }, gou: function () { },
+        }
+    })
+
+</script>
+
+</html>
