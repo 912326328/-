@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css选择器</title>
+    <style>
+        /* 书名+值的选择器 */
+        [name='txtn']{
+            color:blue;
+        }
+        /* 属性名选择器 */
+        [ppp]{
+            color:yellowgreen;
+        }
+        /* 与.link对应的标签紧挨着的第一个p */
+        .link+p{
+            font-size:20px;
+        }
+        /* 所有跟我同级的p标签 */
+        .link ~ p{
+            font-style: italic;
+        }
+        /* 满足.box中存在的所有div */
+        /* .box div{
+           width:200px;
+            border:2px solid pink;
+        } */
+        /* 满足.box中的第一层div */
+        .box > div{
+            width:200px;
+            border:2px solid pink;
+        }
+        /* 组合选择器:将多个选择器通过逗号(,)相连，使得多个选择器共用一个样式 */
+        .txt,.tit{
+            color:pink;
+        }
+        
+        .txt,#txt,p{
+            color:pink;
+        }
+
+        .txt{color:pink;}
+        .tit{color:pink;}
+
+        #txt2{
+            color:blue;
+        }
+        .txt2{
+            color:pink;
+        }
+        p{
+            color:yellow;
+        }
+        /* 选择器优先级  : 行内样式 1000 > id 100 > class 10 > 标签 1 */
+        /* 
+            选择器:first-child
+            1.选择器获取所有能命中的标签
+            2.:first-child将从所有命中的标签中挑取第一个
+         */
+         /* (选择器' ') = (选择器 *) */
+        .box2 :first-child{
+            width:200px;
+            border:1px solid black;
+        }
+        /* 
+             :nth-child(even)/:nth-child(2n+2) 偶数子标签
+             :nth-child(odd)/:nth-child(2n+1)  奇数字标签
+             :nth-child(-n+3)   前3个子元素
+             :nth-child(2)      第二个
+
+            JS
+             ，，，
+            
+             ajax   jquery  未学   
+
+                难度大
+
+            CSS
+             媒体查询,canvas(画图)
+
+             0. 原型链，事件委托，闭包，跨域 待定
+             1. 作用域&this&cookie all
+             2.  all
+             3. 异步 all
+             4. json 
+             5. 事件 6
+             本地存储 3
+
+
+             CSS3 all
+
+             
+             
+         */
+        .list :nth-child(2){
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <a class="link">普通链接1</a>
+    <p id="txt1" name="txtn" ppp="">普通段落1</p>
+    <p id="txt2" name="txtn">普通段落2</p>
+    <p id="txt3" name="txtn">普通段落3</p>
+    <a>普通链接2</a>
+    <p id="txt4" name="txtn">普通段落4</p>
+    <div class="box">
+        <div>
+            普通文字5
+            <div>普通文字6</div>
+        </div>
+    </div>
+    <section>
+        <h1 class="tit">普通标题1</h1>
+        <p class="txt" id="txt">普通段落7</p>
+        <a>普通链接3</a>
+    </section>
+    <p style="color:gray;" class="txt2" id="txt2">普通段落8</p>
+
+    <div class="box2"> 
+        <div>
+            外盒子1
+            <div>内盒子1</div>
+            <div>内盒子2</div>
+        </div>        
+        <div>
+            外盒子2
+            <p>普通段落</p>
+        </div>
+    </div>
+    <ul class="list">
+        <li>列表项1</li>
+        <li>列表项2</li>
+        <li>列表项3</li>
+        <li>列表项4</li>
+        <li>列表项5</li>
+        <li>列表项6</li>
+        <li>列表项7</li>
+        <li>列表项8</li>
+        <li>列表项9</li>
+        <li>列表项10</li>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css - 雪碧图</title>
+    <style>
+        .sp{
+            width:20px;
+            height: 19px;
+            display: block;
+            
+            background: url(imgs/index-spr.png)  -407px -316px;
+            /* 
+                属性:background-position: x y;
+
+                此处的x与y值只能为负数.
+                通过x与y的偏移量来移动盒子的可视区域
+
+             */
+            /* background-position: -407px -316px; */
+        }
+        .sp:hover{
+            background-position: -431px -316px;
+        }
+    </style>
+
+</head>
+<body>
+    <i class="sp"></i>
+</body>
+</html>

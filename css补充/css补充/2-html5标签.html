@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>html5标签</title>
+    <style>
+        .box{
+            width:100px;
+            border-top:2px solid blue;
+            position: relative;
+        }
+        /* 伪类元素默认为内联标签 */
+        .box::after{
+            content:'·';
+            position: absolute;
+            right: -5px;
+            top: -13px;
+        }
+        .boxs div{
+            float: left;
+            margin-left: 20px;
+        }
+        .boxs{
+            border:2px solid pink;
+        }
+        .clearfix::after{
+            /* 
+                清除漂浮的要素：
+                1.必须为兄弟节点
+                2.必须是个弟弟（最后一个）
+                3.清除漂浮的元素必须是块状标签
+             */
+             display: block;
+             clear: both;
+             /* content就是伪类元素的实体 */
+             content: '';
+        }
+        input::placeholder{
+            color:blue;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- 网页头部 -->
+    <header>
+        <!-- 头部可能包含导航 -->
+        <nav></nav>
+    </header>
+    <!-- 网页的主题部分，尽可能只有一个 -->
+    <main>
+        <form>
+            <input maxlength="3" readonly value="xxxxx">
+            <input maxlength="3" placeholder="请输入您的密码">
+            <!-- 密码框 -->
+            <input type="password" value="abc">
+        </form>
+        <!-- 下划线 -->
+        <u>xxx</u>
+        <!-- 斜体 -->
+        <i>xxxx</i>
+        <!-- 时间 -->
+        <time>2019-01-01 12:00:00</time>
+        <!-- 联系信息 -->
+        <address style="font-style: italic;">
+            <p>联系电话:13800000000</p>
+        </address>
+        <!-- 视频标签 -->
+        <!-- <video  autoplay>
+            <!-- 浏览器解析时会由上至下进行逐一解析，直到遇见本浏览器支持的类型 -->
+            <source src="e:/120000.mp4">
+            <source src="e:/120000.mp4">
+                <!-- 在不支持video标签的浏览器，以文字显示出来 -->
+                您的浏览器不支持h5播放器
+        </video> -->
+        <!-- 伪类元素 -->
+        <div class="boxs clearfix">
+            <div class="box"></div>
+            <div class="box"></div>
+            
+        </div>
+    </main>
+    <!-- 页脚 -->
+    <footer></footer>
+
+
+</body>
+</html>

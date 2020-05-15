@@ -185,6 +185,8 @@
         border-bottom: 1px solid rgb(221, 221, 221);
         box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgba(0, 0, 0, 0.2);
     }
+
+    .pptv{text-decoration: line-through;}
 </style>
 
 <body>
@@ -192,7 +194,7 @@
         <!-- 主体结构 -->
         <div id="zhu">
             <!-- 邹总记事本专门一个div -->
-            <h1>邹总代办</h1>
+            <h1>邹总记事本</h1>
             <!-- 输入框内容 -->
             <div class="wbk">
                 <!-- 按钮标签 -->
@@ -206,7 +208,7 @@
                     <p class="ppc">{{ xh }}
                     <p @click="addc(y)" class="x">X</p>
                     </p>
-                    <input type="checkbox" class="toggle">
+                    <input type="checkbox" class="toggle" @click="pptvys">
                 </li>
             </ul>
         </div>
@@ -228,7 +230,8 @@
         el: "#zhu",
         data: {
             xswl: [
-                "初始值",
+                "小白程序员",
+                "开发者小邹开发于2020年5月14日"
             ],
             v: "",
             y: ""
@@ -240,7 +243,12 @@
             },
             addc: function (y) {
                 this.xswl.splice(y, 1);
-            }, gou: function () { },
+            }, 
+            pptvys:function(y){
+                let ppc =document.querySelectorAll("p")[y];
+                    ppc.className = "pptv"
+                },
+                gou: function () { },
         }
     })
 

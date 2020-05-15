@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>定位</title>
+		<!-- 
+		 定位：以某个参照物进行移动
+		 
+		 属性:posittion
+		
+		 
+		 相对定位：
+			relative	以自身出现的位置作为参照点
+		 绝对定位：
+			absolute
+						1.当父元素没有定位时，以body作为参照点
+						2.当父元素有定位时，则父元素为参照点（与最近的有定位的父元素）
+						
+			特点：
+				1.当一个标签拥有绝对定位时，其自身脱离了html的文档流
+		 （窗口定位） --- 绝对定位：
+			fixed      以浏览器窗口作为参照点
+			
+		定位后可以使用的属性：
+		上	top
+		下	bottom
+		左	left
+		右	right
+		
+		方向与参照点保持的正向关系（可正，可负） 
+			负数为靠近，甚至隐藏
+			正数为远离，甚至隐藏
+		
+		 -->
+		<style>
+			body {
+				height: 2000px;
+			}
+
+			.nav {
+				width: 50px;
+				height: 200px;
+				border: 1px solid black;
+
+				position: fixed;
+				top: 100px;
+				right: -1px;
+				/* 方向不要出现冲突，否则没有预期效果*/
+				/* bottom:100px; */
+			}
+
+			.box {
+				width: 50px;
+				height: 50px;
+				border: 1px solid black;
+
+				position: relative;
+				right: 10px;
+				top: 10px;
+			}
+
+			.parent {
+				width: 200px;
+				height: 200px;
+				border: 1px solid black;
+				margin: 0 auto;
+
+				/* 外层用相对定位 */
+				position: relative;
+			}
+
+			.sub {
+				width: 50px;
+				height: 50px;
+				border: 1px solid black;
+
+				/* 内层用绝对定位 */
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				
+				background-color: #87CEEB;
+			}
+			.sub-parent{
+				width: 100px;
+				height: 100px;
+				border: 1px solid red;
+				
+				position: relative;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="nav">导航</div>
+		<div class="box">相对定位</div>
+		<div class="parent">
+			<div class="sub-parent">
+				<div class="sub">子</div>
+				456
+			</div>
+			123
+		</div>
+	</body>
+</html>

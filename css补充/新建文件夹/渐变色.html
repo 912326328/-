@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>渐变色</title>
+		<style type="text/css">
+			.btn{
+				width:100px;
+				height: 36px;
+				border:0;
+				/* 
+				background: linear-gradient(hotpink,deepskyblue) ;
+									
+				background 可以用于设置背景图，颜色，背景图位置...
+				linear-gradient() 渐变色					
+				linear-gradient(开始颜色,结束颜色)
+				linear-gradient(to 结束方向,开始颜色,结束颜色);
+				开始颜色在结束方向的对向，结束颜色则在结束方向的正向
+				linear-gradient(to 结束方向,开始颜色 与下个颜色开始位置(%),结束颜色 与下个颜色开始位置(%),...); 可以设置多个颜色渐变
+				
+				渐变色的开始位置与下一个颜色之间的开始位置，形成渐变区域（颜色与颜色之间的过渡）
+				*/
+				background: linear-gradient(to left,black 33%,pink 66%,white);
+				color:white;
+			}
+		</style>
+	</head>
+	<body>
+		<button class="btn">渐变色按钮</button>
+	</body>
+</html>
