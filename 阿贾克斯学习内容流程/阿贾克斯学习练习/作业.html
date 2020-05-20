@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .ss img{width:160px;height: 80px;}
+</style>
+
+<body>
+    <div id="cctv">
+        <div>
+            <div class="ss"><img src="https://pic.51houniao.com/f5f3be8c3bb3487ca3bce0d7aa669f00.jpg"></div>
+            <p>捷匈奥，幸福在这伸了个懒腰</p>
+            <button>奥地利,捷克,匈牙利</button>
+            <p>11天9晚</p>
+        </div>
+    </div>
+</body>
+<script>
+    let cctv = document.getElementById("cctv")
+    let zzl = new XMLHttpRequest();
+    zzl.open("get", 'houniaodata.json', true);
+    zzl.send();
+    zzl.onreadystatechange = function () {
+        if (zzl.readyState == 4) {
+            let zou = zzl.responseText;
+            let gg = JSON.parse(zou);
+                 
+                coco+=`
+            <div>
+                <div><img src=${gg.proPicUrl[1]}></div>
+                <p>${gg.proTitle[1]}</p>
+                <button>${gg.country[1]}</button>
+                <p>${gg.routingDat[1]}天${gg.routingNigth[1]}晚</p>
+            </div>
+            `;
+        }
+    }
+</script>
+
+</html>

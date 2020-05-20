@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>ajax基础</title>
+		<style type="text/css">
+			#con{width: 400px; height: 400px; border:1px solid red;}
+		</style>
+		
+	</head>
+	<body>
+		<button id = "btn">获取数据</button>
+		
+		<div id="con">  </div>
+		
+		<script>
+			//window.onload 是窗口加载完才会执行里面的js代码，好处是，避免不必要的报错
+			
+			window.onload = function(){
+				//1.获取按钮、div
+				var oBtn = document.getElementById('btn');
+				var oCon = document.getElementById('con');
+				
+				//2.给按钮点击事件
+				oBtn.onclick = function(){
+					//3.打开浏览器  
+					//创建http请求对象
+					var xhr = new XMLHttpRequest();
+					//4.向地址栏输入内容
+					//open 打开一个地址，有两种方式  get   参数是跟在url后面，参数的数量有限制 小数据量并且数据安全性不需要考虑的我们使用种种方式
+					//post 参数是在 header请求头中传输的，传输的数据量比较大，而且比get方式更安全 
+					//参数   请求方式，url地址，  是否异步
+					xhr.open('get',  'stu.json',true);
+					
+					//5.回车提交请求，提交给后台
+					//发送请求
+					xhr.send();
+					
+					//6.等待服务器返回数据
+					xhr.onreadystatechange = function(){
+						//7.服务器的返回状态是否正常
+						/*
+						0: 请求未初始化
+						1: 服务器连接已建立
+						2: 请求已接收
+						3: 请求处理中
+						4: 请求已完成，且响应已就绪*/
+						if(xhr.readyState == 4){//等于4的状态码就表示服务器正常返回数据了
+							//8.接收数据
+							var data = xhr.responseText;
+							console.log(data);
+							//9.将json字符串转json对象
+							var dataObj = JSON.parse(data);
+							
+							//9.渲染
+							oCon.innerHTML = "用户名是："+dataObj.name;
+						}
+					}
+					
+					
+				}
+			}
+			
+		</script>
+	</body>
+</html>

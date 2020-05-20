@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#con{width:400px; height: auto; border:1px solid blue;}
+		</style>
+	</head>
+	<body>
+		<button id = "btn">获取数据</button>
+		
+		<div id="con"> 
+			
+		 
+		 
+		 </div>
+		<script type="text/javascript">
+			window.onload = function(){
+				//1.获取dom
+				var oBtn = document.getElementById('btn');
+				var oCon = document.getElementById('con');
+				
+				//2.绑定点击事件
+				oBtn.onclick = function(){
+					//3.创建 获取数据的对象
+					try{
+						var xhr = new XMLHttpRequest();
+					}catch(e){//专门为了兼容ie6及以下版本
+						xhr = ActiveXObject('Microsoft.XMLHTTP');
+					}
+					
+					//4.打开地址
+					xhr.open('get','stu.json',true);
+					
+					//5. 发送请求
+					xhr.send();
+					
+					//6.等待返回
+					xhr.onreadystatechange = function(){
+						//7.判断状态
+						if(xhr.readyState == 4){//服务器端的数据已经准备好
+							// 判断返回状态码 是不是200
+							if(xhr.status == 200){
+								//8.接收数据
+								var data = xhr.responseText;
+								//9.将字符串转json对象
+								var dataObj = JSON.parse(data);
+								//10.渲染
+								/*oCon.innerHTML = "<ul><li>用户名："+dataObj.name+"</li><li>年龄："+dataObj.age+
+								"</li><li>性别："+dataObj.sex+"</li></ul>";*/
+								
+								//使用 es6字符串写法
+								oCon.innerHTML = `
+									<ul>
+										<li>用户名：${dataObj.name}</li>
+										<li>年龄：${dataObj.age}</li>
+										<li>性别：${dataObj.sex}</li>
+									</ul>
+								`;
+								
+								
+							}
+						}
+					}
+					
+					
+				}
+			}
+			
+			/*
+			http返回状态码：
+			1** 请求的数据没有成功
+			200 请求成功
+			3** 跳转的错误  重定向错误
+				301 想要请求的数据已经被删除了，链接被永久重定向
+				302 临时重定向
+				303 客户端应当采用 GET 的方式访问那个资源 ，post 就重定向
+				304 如果客户端发送了一个带条件的 GET 请求且该请求已被允许，而文档的内容（自上次访问以来或者根据请求的条件）并没有改变，则服务器应当返回这个状态码。
+			4**
+				400 请求参数报错，你需要修改参数
+				401 请求的验证失败，一般用作 token的验证
+				403 请求不被允许，
+				404 页面没找到
+				405 请求方式不对， 有可能 后台需要的是post方式，结果前台给的请求是 get方式的
+			5** 	服务器端错误
+			*/
+		   //http://www.51houniao.com/wx/customer/classic/index.html
+		</script>
+	</body>
+</html>

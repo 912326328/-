@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #zzl{border:2px solid red;width:100px;height:100px;}
+</style>
+<body>
+    <button id = "btn">ajax</button>
+    <div id = "zzl"></div>
+</body>
+<script>
+    window.onload=function(){
+        let zxc = document.getElementById("btn")
+        let div = document.getElementById("zzl")
+        zxc.onclick=function(){
+            let xhr = new XMLHttpRequest();
+            xhr.open("get",'qwer.json',true);
+            xhr.send();//等待返回数据
+            xhr.onreadystatechange=function(){
+                if(xhr.readyState==4){
+                    let dd=xhr.responseText;
+                    console.log(dd)
+                    let data=JSON.parse(dd);//改成JSON格式才可以渲染出来
+                    div.innerHTML="用户姓名："+data.new
+                }
+            }
+        }
+    }
+</script>
+</html>

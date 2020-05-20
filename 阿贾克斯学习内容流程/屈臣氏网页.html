@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" />
+    <title>Document</title>
+</head>
+<style>
+    * {
+        text-decoration: none
+    }
+    div {
+        padding: 0;
+        margin: 0;
+    }
+    li {
+        list-style: none;
+    }
+
+    body {
+        font-size: 12px;
+        background-color: rgb(235, 156, 211);
+    }
+
+    li {
+        width: 120px;
+        height: 245px;
+        background-color: white;
+        float: left;
+        margin-left: 5px;
+        margin-bottom: 5px;
+    }
+
+    li img {
+        width: 120px;
+        height: 120px;
+    }
+
+    a {
+        font-size: 12px;
+        color: #000;
+    }
+    p{
+
+        height: 10px;
+        width: 100%;
+    }
+    h3 {
+        color: red;
+        float: left;
+        font-size: 14px;
+        margin-bottom: 0px;
+        width: 100%;
+    }
+
+    span {
+        float: left;
+        font-size: 8px;
+        text-decoration: line-through;
+        color: rgb(194, 194, 194);
+    }
+
+    button {
+        width: 110px;
+        height: auto;
+        background-color: #ff6262;
+        margin-left: 5px;
+        color: white;
+        border:0px;
+        outline: 0px;
+        width: 110px;
+        height: 24px;
+    }
+
+    #cctv {
+        width: 120;
+        height: 220px;
+        padding: 5px;
+        margin-left: 2px;float: left;
+    }
+    .dic{height: 105px;}
+    h1{margin-left: 150px;}
+</style>
+
+<body>
+    <h1>邹少开发</h1>
+    <ul id="cctv">
+        <!-- <li>
+            <div><img src="https://image.watsons.com.cn//upload/bbec4a96.jpg"></div>
+            <div>
+                <a href="#" target="_blank">春雨蜂蜜面膜 25g*5片</a>
+                <h3>￥59 </h3><span>￥99</span>
+                <button>立即购买</button>
+            </div>
+        </li> -->
+    </ul>
+</body>
+<script>
+    window.onload = function () {//加载完页面在加载js
+        let zzl = new XMLHttpRequest();//创建http对象
+        zzl.open('get', "qcs_baokuan.json", true);//向地址栏输入内容
+					//open 打开一个地址，有两种方式  get   参数是跟在url后面，参数的数量有限制 小数据量并且数据安全性不需要考虑的我们使用种种方式
+					//post 参数是在 header请求头中传输的，传输的数据量比较大，而且比get方式更安全 
+					//参数   请求方式，url地址，  是否异步
+        zzl.send();//等待服务器返回数据
+        zzl.onreadystatechange = function () {
+            if (zzl.readyState == 4) {//检查服务器返会状态是否正常
+                if (zzl.status == 200) {//检查状态码是不是200，这里可能会有多种状态码可以上网找html状态码
+                    let awm = "";//接收html
+                    let awm2 = zzl.responseText;//接收服务器返回的数据
+                    let awmjs = JSON.parse(awm2);//服务器返回的是字符串数据，现在转换成JSON对象
+                    for (let x = 0; x < awmjs.data.item_list.length; x++) {//循环拿到的JSON数据，这里比较恶心，你可以去看看qcs_baokuan.json文件，悟不出来在说
+                        //下面是文本html的内容把拿到的JSON对象数据渲染到html里面
+                        awm += `
+                            <li>
+                                <div><img src= "${awmjs.data.item_list[x].over_image_url}"></div>
+                                <div class="dic">
+                                    <p><a href="#" target="_blank">${awmjs.data.item_list[x].item_name}</a><p>
+                                    <h3>￥59<span>￥99</span></h3>
+                                    <button>立即购买</button>
+                                </div>
+                            </li>
+                                `;
+                    }
+                    //获取上面ul标签的id把最后得出的awm（就是html的标签）用innerHTML写进ul里面
+                    let CCRV = document.getElementById("cctv");
+                    CCRV.innerHTML = awm;
+                }
+            }
+        }
+    }
+
+
+</script>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #div{border:2px solid red;width:300px;height: 300px; }
+</style>
+<body>
+    <button id = "btn">按吧 </button>
+    <div id="div"></div>
+</body>
+<script>
+    window.onload=function(){
+        let sdd=document.getElementById("btn");
+        let app= document.getElementById("div")
+        sdd.onclick=function(){
+            let zzl =new XMLHttpRequest();
+            zzl.open("get",'qwer.json',true);
+            zzl.send();
+            zzl.onreadystatechange=function(){
+                if(zzl.readyState==4){
+                    let lb=zzl.responseText;
+                    let lball=JSON.parse(lb);
+                    div.innerHTML="晚青:"+lball.new;
+                }
+            }
+        }
+    }
+</script>
+</html>

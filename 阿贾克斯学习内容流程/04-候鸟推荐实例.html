@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<!--视口  专门设置移动端的网页显示正常的-->
+		<!-- 页面宽度等于设备宽度，缩放比是1，     最小缩放比是1，  最大缩放比是1，   不能手动缩放，    兼容苹果的小刘海    -->
+		<!--width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover-->
+		<meta name="viewport" content="width=device-width" />
+		<style>
+			/*reset 浏览器默认属性清除*/
+			html,body,ul,li,img,div{padding:0; margin:0;  }
+			ul,li{list-style: none;}
+			body{font-size:12px;}
+			.con li{display: flex; flex-direction: row; flex-wrap: nowrap; justify-content: space-around;
+			margin-top:10px; border-bottom: 1px dotted #ccc;}
+			.con li .c_img{width: 30%;}
+			.con li .c_img img{width:100%;}
+			.con li .c_text{width:60%;}
+			
+			
+		</style>
+	</head>
+	<body>
+		<ul id="con" class="con">
+			<!-- <li>
+				<div class="c_img"><img src="https://pic.51houniao.com/f5f3be8c3bb3487ca3bce0d7aa669f00.jpg" /></div>
+				<div class="c_text">
+					<div>捷匈奥，幸福在这伸了个懒腰</div>
+					<div>奥地利、捷克、匈牙利</div>
+					<div><span>11天9晚</span> <span>432525元起</span></div>
+				</div>
+			</li> -->
+		</ul>
+		<script type="text/javascript">
+			window.onload = function(){
+				//1.获取dom
+				var oCon = document.getElementById('con');
+				
+				//3.创建 获取数据的对象
+				try{
+					var xhr = new XMLHttpRequest();
+				}catch(e){//专门为了兼容ie6及以下版本
+					xhr = ActiveXObject('Microsoft.XMLHTTP');
+				}
+				//4.打开地址
+				xhr.open('get','houniaodata.json',true);
+				//5. 发送请求
+				xhr.send();
+				//6.等待返回
+				xhr.onreadystatechange = function(){
+					//7.判断状态
+					if(xhr.readyState == 4){//服务器端的数据已经准备好
+						// 判断返回状态码 是不是200
+						if(xhr.status == 200){
+							var str = "";//保存每行的dom数据的
+							//8.接收数据
+							var data = xhr.responseText;
+							console.log(data);
+							//9.将字符串转json对象
+							var dataObj = JSON.parse(data);
+							//10.渲染
+							//使用 es6字符串写法
+							for(var i = 0;i<dataObj.length;i++){
+								str += `
+								<li>
+									<div class="c_img"><img src="${dataObj[i].proPicUrl}" /></div>
+									<div class="c_text">
+										<div>${dataObj[i].proTitle}</div>
+										<div>${dataObj[i].proTitle}</div>
+										<div><span>11天9晚</span> <span>432525元起</span></div>
+									</div>
+								</li>
+								`;
+							}
+							
+							oCon.innerHTML = str;
+							
+							
+						}
+					}
+				}
+			}
+		</script>
+	</body>
+</html>
